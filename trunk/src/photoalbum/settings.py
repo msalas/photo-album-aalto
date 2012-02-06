@@ -1,4 +1,4 @@
-# Django settings for DjangoProject project.
+# Django settings for photoalbum project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/Evuski/Programming/workspace/DjangoProject/sqlite.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/Users/msalas/Documents/workspace/photoalbum/src/sqlite.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -83,7 +83,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '_+zt3s%71yf+h=k^h$k57lx+%9+45dp!x)znb873*388k6!ms$'
+SECRET_KEY = 'egcd3lp-f_a93w-615w^svfij!h5w@vb4e=sflyt-tcfa8f!$i'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -100,7 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'DjangoProject.urls'
+ROOT_URLCONF = 'photoalbum.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
