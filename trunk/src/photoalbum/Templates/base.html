@@ -1,0 +1,138 @@
+<!--
+   - base.html
+   -
+   - Basic template that includes the minimal skeleton for building each of the
+   - extended templates.
+   -
+   - (c) 2011 The Webshop Team
+!-->
+
+
+
+<!DOCTYPE html>
+<html> 
+    <head>
+        <!-- website title (loaded dynamically) -->
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- meta definitions -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="Photo Album" />
+        <meta name="keywords" content="Online photo album, photo share" />
+    <!--    <meta name="author" content="The Photo Album Team" /> -->
+        <meta name="allow-search" content="yes" />
+        <meta name="robots" content="follow,index" />
+
+        <!-- common stylesheet for all templates -->
+        <link rel=stylesheet href="/static/css/style.css" type="text/css" />
+    <!--    <link rel=stylesheet href="/static/css/navi.css" type="text/css" />
+        <link rel=stylesheet href="/static/css/search.css" type="text/css" /> -->
+
+        <!-- Javascript functionality -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <!--    <script src="/static/js/validate.js"></script>
+        <script src="/static/js/formvalidation.js"></script> -->
+        {% block extra_head %}{% endblock %}
+    </head> 
+    
+    <body>
+        <div id="wraper">
+            <!-- top-bar navigation -->
+            {% block header %}
+            <div id="nav-menu">
+                <ul id="nav"> 
+                    <li class="logo">
+                        <div id="logo">
+                            <img src="/static/images/logo.png" alt="logo" onclick="window.location.href='/';" />
+                        </div>
+                    </li>
+                    <li class="search">
+                        <form class="searchform" action="/search" method="get">
+                            {% csrf_token %}
+                            <input class="searchfield" name="query" type="text"
+                                   title="searchbox" value="Search..."
+                                   onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" /> 
+                            <input class="searchbutton" type="submit" value="Go" /> 
+                        </form>
+                    </li>
+                    
+                    {% if not request.user.is_authenticated %}
+                    <li>
+                        <a href="/signin/">Sign in</a>
+                        <!-- pop-up sign-in form -->
+                        <ul>
+                            <li>
+                            <form id="builtin_login" method="post" action="/signin/">
+                            {% csrf_token %}
+                            <table>
+                            <tr>
+                                <td>
+                                <label for="id_username">Username:</label>
+                                <br />
+								{{ login_form.username }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <label for="id_password">Password:</label>
+                                <br />
+								{{ login_form.password }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="buttons">
+                                    <input class="button" type="submit" name="submit" value="Sign in" />
+                                </td>
+                            </tr>
+                            </table>
+                        </form>
+                        </li>
+                        </ul>
+                    </li> 
+                    {% endif %}
+                
+                    {% if request.user.is_authenticated %}
+                    <li><a href="/editProfile">{{ request.user.username }}</a> 
+                        <ul> 
+                            <li><a href="/cart">My cart</a></li> 
+                            <li><a href="/myTransactions">My products</a></li> 
+                            <li><a href="/editProfile">My profile</a></li> 
+                            <li><a href="/signout">Sign out</a></li>
+                        </ul> 
+                    </li> 
+
+                    {% if request.user.is_staff %}
+                        <li><a href="/myadmin">Administration</a></li>
+                    {% endif %}
+
+                        {% if products_in_cart > -1 %}
+                        <li id="my-cart">
+                            <a href="/cart"><img id="cart"
+                               src="/static/images/cart-icon.png" alt="My Cart" /><span id="products-in-cart">{{ products_in_cart }}</span> items</a>
+                        </li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="/signup">Sign up</a></li>
+                    {% endif %}
+                </ul> 
+            </div>
+            {% endblock %}
+                
+            {% block side_bar %}
+                {% include "user_sidebar.html" %}
+            {% endblock %}
+            
+            <div id="content">
+                {% block main_content %}{% endblock %}
+            </div>
+        
+            <div id="footer">
+                {% block footer %}
+                    &copy;2012 The Photo Album Team, Finland | <a
+                    href="/myadmin">Administrative page</a><br/>
+                {% endblock %}
+            </div>
+        </div>
+        
+    </body> 
+</html>
