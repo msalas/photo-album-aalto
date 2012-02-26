@@ -46,7 +46,7 @@
                             <img src="/static/images/logo.png" alt="logo" onclick="window.location.href='/';" />
                         </div>
                     </li>
-                    <li class="search">
+            <!--        <li class="search">
                         <form class="searchform" action="/search" method="get">
                             {% csrf_token %}
                             <input class="searchfield" name="query" type="text"
@@ -54,7 +54,7 @@
                                    onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" /> 
                             <input class="searchbutton" type="submit" value="Go" /> 
                         </form>
-                    </li>
+                    </li> -->
                     
                     {% if not request.user.is_authenticated %}
                     <li>
@@ -94,8 +94,7 @@
                     {% if request.user.is_authenticated %}
                     <li><a href="/editProfile">{{ request.user.username }}</a> 
                         <ul> 
-                            <li><a href="/cart">My cart</a></li> 
-                            <li><a href="/myTransactions">My products</a></li> 
+                            <li><a href="/cart">My albums</a></li> 
                             <li><a href="/editProfile">My profile</a></li> 
                             <li><a href="/signout">Sign out</a></li>
                         </ul> 
@@ -118,9 +117,9 @@
             </div>
             {% endblock %}
                 
-            {% block side_bar %}
+       <!--     {% block side_bar %}
                 {% include "user_sidebar.html" %}
-            {% endblock %}
+            {% endblock %} -->
             
             <div id="content">
                 {% block main_content %}{% endblock %}
