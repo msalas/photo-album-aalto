@@ -51,6 +51,7 @@ class Album(models.Model):
     name        = models.CharField(max_length=32, blank = False)
     cover_id    = models.CharField()
     visible     = models.BooleanField()
+    owner       = models.ForeignKey('UserProfile')
     
     def __unicode__(self):
         return self.name

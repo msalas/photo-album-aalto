@@ -15,5 +15,12 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     
+    (r'^signup/$', 'photoalbum.views.signup'),
+    (r'^signin/$', 'photoalbum.views.signin'),
+    (r'^signout/$', 'photoalbum.views.signout'),
+    (r'^editProfile$', 'photoalbum.views.editProfile'),
+    
+    (r'^myadmin$', 'photoalbum.views.myadmin'),
+    
     (r'^$', 'photoalbum.views.main'),
 )

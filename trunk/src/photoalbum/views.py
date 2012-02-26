@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from login import *
+from models import *
+from forms import *
 
 def main(request):
     t = loader.get_template('main.html')
@@ -21,11 +23,12 @@ def main(request):
     
     # if the user is authenticated, then send info about the card in the request
     if request.user.is_authenticated():
-        number_items_in_cart = request.user.get_profile().products_in_cart
-        context.update({'products_in_cart': number_items_in_cart})
-  #  else:
-  #      login_form = LoginForm()
-  #      context.update({'login_form': login_form})
+        albums = Album.objects.filter(owner=request.user.username)
+   #     covers = Image.objects.
+        context.update({'albums': albums})
+    else:
+        login_form = LoginForm()
+        context.update({'login_form': login_form})
     
     # if show-as-icons option, then send this option to the template
     if request.GET.get('l') == 'icons':
