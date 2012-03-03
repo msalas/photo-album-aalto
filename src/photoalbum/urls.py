@@ -22,5 +22,6 @@ urlpatterns = patterns('',
     
     (r'^myadmin$', 'photoalbum.views.myadmin'),
     
-    (r'^$', 'views.main'),
+    (r'$', 'views.main'),
+    
 )
