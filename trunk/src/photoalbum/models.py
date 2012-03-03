@@ -50,8 +50,9 @@ User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 class Album(models.Model):
     name        = models.CharField(max_length=32, blank = False)
     cover_id    = models.CharField()
-    visible     = models.BooleanField()
+    visible     = models.BooleanField(default=True)
     owner       = models.ForeignKey('UserProfile')
+    front_page  = models.FilePathField()
     
     def __unicode__(self):
         return self.name
@@ -64,6 +65,7 @@ class Album(models.Model):
 # name        name of the tag
 class Page(models.Model):
     layout_id = models.IntegerField()
+    album_id  = models.IntegerField()
     image1 = models.CharField() #null? TODO
     image2 = models.CharField() #null? TODO
     image3 = models.CharField() #null? TODO
@@ -85,7 +87,8 @@ class Page(models.Model):
 class Image(models.Model):
     filename            = models.CharField()
     picture             = models.ImageField()
-    externalId          = models.CharField() #What is this field?
+    album_id            = models.IntegerField()
+    path                = models.FilePathField()
     
     def savePicture(self):
         self.save()
@@ -100,9 +103,9 @@ class Image(models.Model):
 # 
 class Sentence(models.Model):
     description     = models.CharField()
-    font = models.CharField()
-    size = models.IntegerField()
-    color = models.CharField()
+    font            = models.CharField()
+    size            = models.IntegerField()
+    color           = models.CharField()
     
     
     def saveSentence(self):
