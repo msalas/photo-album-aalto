@@ -5,11 +5,11 @@
 
 ### necessary libraries ###
 from django.db import models
-from django.utils.datetime_safe import datetime
-from django.template.defaultfilters import default
+#from django.utils.datetime_safe import datetime
+#from django.template.defaultfilters import default
 from django.contrib.admin.models import User
-from django.db.models.signals import post_save
-import math, md5
+#from django.db.models.signals import post_save
+#import math, md5
 
 
 
