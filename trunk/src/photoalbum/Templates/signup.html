@@ -1,0 +1,89 @@
+<!-- Sign up form for new user registration.
+(c) 2012 The Photo Album Team
+!-->
+
+<!-- layout inherited from base.html -->
+{% extends "base.html" %}
+
+<!-- title and extra headers -->
+{% block title %} Sign up {% endblock %}
+
+<!-- main content -->
+{% block main_content %}
+    {% block registration_form %}
+        <h1>Sign up now!</h1>
+        <form enctype="multipart/form-data" id="registration_form" method="post" action=".">
+        {% csrf_token %}
+
+		{% if name_error %}
+			<div class="error"> {{ name_error }} </div>
+		{% endif %}
+		
+		{% if mail_error %}
+			<div class="error"> {{ mail_error }} </div>
+		{% endif %}
+		
+		{% if check_email %}
+			<div class="error"> {{ check_email }} </div>
+		{% endif %}
+		
+		{% if message_error %}
+			<div class="error"> {{ message_error }} </div>
+		{% endif %}
+
+        <table>
+        <tr>
+            <td>
+	        <label for="id_firstname">First name:</label>
+            </td>
+            <td>
+            {{ form.firstname }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="id_surname">Surname:</label>
+            </td>
+            <td>
+            {{ form.surname }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="id_username">Username:</label>
+            </td>
+            <td>
+            {{ form.username }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="id_password">Password:</label>
+            </td>
+            <td>
+            <input type="password" id="password" name="password" value="{{ password }}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="id_email">Email:</label>
+            </td>
+            <td>
+            <input type="text" id="email" name="email" value="{{ email }}" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Thank you!.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="buttons">
+                <input class="button" type="submit" id="submit" value="Register" />
+                <input class="return" type="reset" value="Clear" />
+            </td>
+        </tr>
+        </table>
+        </form>
+    {% endblock %}
+{% endblock %}
