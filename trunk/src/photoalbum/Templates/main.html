@@ -18,12 +18,12 @@
     {% else %}
         <h2>Welcome to PhotoAlbum</h2>
 		
-		<div class="centered">
+ <!-- 		<div class="centered">
 			<table>
 			{% for album in albums %}
 				<tr>
 					<td rowspan="2" class="album">
-						<a href="/album/{{ album.id }}/"> <img class="product-pic" src="/static/images/products/{{ album.coverid }}" ></a>
+						<a href="/album/{{ album.id }}/"> <img class="product-pic" src="/static/images/{{ album.coverid }}" ></a>
 					</td>
 					<td class="product">
 						<div class="title"><a href="/product/{{ album.id }}/">{{ album.name }}</a></div>
@@ -32,7 +32,7 @@
 				</tr>
 			{% endfor %}
 			</table>
-		</div>
+		</div> -->
     {% endif %}
 
     <!-- regular descriptive text of the website for everybody -->
