@@ -21,7 +21,7 @@
         {% if registered %}
             <p>Welcome to Photo Album service!</p>
         {% endif %}
-
+{% endblock %}
         <!-- sign-in form -->
         <form method="post" id="signin_form" action="/signin/">
         {% csrf_token %}

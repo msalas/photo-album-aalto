@@ -13,7 +13,7 @@
 <html> 
     <head>
         <!-- website title (loaded dynamically) -->
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}The Photo Album 2012{% endblock %}</title>
 
         <!-- meta definitions -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -57,38 +57,7 @@
                     </li> -->
                     
                     {% if not request.user.is_authenticated %}
-                    <li>
-                        <a href="/signin/">Sign in</a>
-                        <!-- pop-up sign-in form -->
-                        <ul>
-                            <li>
-                            <form id="builtin_login" method="post" action="/signin/">
-                            {% csrf_token %}
-                            <table>
-                            <tr>
-                                <td>
-                                <label for="id_username">Username:</label>
-                                <br />
-								{{ login_form.username }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                <label for="id_password">Password:</label>
-                                <br />
-								{{ login_form.password }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="buttons">
-                                    <input class="button" type="submit" name="submit" value="Sign in" />
-                                </td>
-                            </tr>
-                            </table>
-                        </form>
-                        </li>
-                        </ul>
-                    </li> 
+
                     {% endif %}
                 
                     {% if request.user.is_authenticated %}
