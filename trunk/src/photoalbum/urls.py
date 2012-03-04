@@ -26,11 +26,17 @@ urlpatterns = patterns('',
     (r'^facebook/authentication_callback$', 'facebook.views.authentication_callback'),
     (r'^logout$', 'django.contrib.auth.views.logout'),
 
-    (r'^createAlbum$', 'photoalbum.views.createAlbum'),
-    (r'^addPhoto$', 'photoalbum.views.addPhoto'),
     
 #    (r'^myadmin$', 'photoalbum.views.myadmin'),
-   (r'^$', 'photoalbum.views.main'),
-   (r'^albums$','albums.views.index')
+	 (r'^$', 'photoalbum.views.main'),   
+ 
+    (r'^profile$', 'photoalbum.views.profile'),
+   
+    (r'^albums$','albums.views.index'),
+    (r'^albums/(?P<album_id>\d+)/$', 'albums.views.viewAlbum'),
+    (r'^albums/(?P<image_id>\d+)$', 'albums.views.viewImage'),
+    (r'^createAlbum$', 'albums.views.createAlbum'),
+    (r'^addPhoto$', 'albums.views.addPhoto'),
+    (r'^addPage$', 'albums.views.addPage'),
     
 )

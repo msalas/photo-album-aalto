@@ -1,5 +1,5 @@
 from django.contrib import admin
-from photoalbum.albums.models import Album, Page
+from photoalbum.models import Album, Page
 
 #class AlbumAdmin(admin.ModelAdmin):
 #search_fields = ["title"]
