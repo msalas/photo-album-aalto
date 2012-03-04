@@ -137,7 +137,7 @@ def signin(request):
             if user is not None:
                 # login the user and redirect to the front page
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('profile.html')
             else:
                 context = RequestContext(request, { 
  #                   'album'        : albums,
