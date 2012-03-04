@@ -23,7 +23,7 @@ from django.contrib.admin.models import User
 # picture          path to the static file containing the user profile's picture
 
 class UserProfile( models.Model ):
-    user           = models.ForeignKey(User, unique=True)
+    username           = models.ForeignKey(User, unique=True)
     picture        = models.CharField(max_length=256)
     
     def get_user(self):

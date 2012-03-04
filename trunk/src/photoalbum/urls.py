@@ -3,6 +3,7 @@ from django.conf.urls.defaults import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
+from photoalbum.views import xd_receiver
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,13 +16,15 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     
-    (r'^signup/$', 'photoalbum.views.signup'),
-    (r'^signin/$', 'photoalbum.views.signin'),
-    (r'^signout/$', 'photoalbum.views.signout'),
-    (r'^editProfile/$', 'photoalbum.views.editProfile'),
+    (r'^signup$', 'photoalbum.views.signup'),
+    (r'^signin$', 'photoalbum.views.signin'),
+    (r'^signout$', 'photoalbum.views.signout'),
+    (r'^editProfile$', 'photoalbum.views.editProfile'),
+    (r'^facebook/', include('facebookconnect.urls')),
+    (r'^xd_receiver\.html$', xd_receiver)
     
     (r'^myadmin$', 'photoalbum.views.myadmin'),
     
-    (r'$', 'views.main'),
+    (r'^$', 'photoalbum.views.main'),
     
 )
