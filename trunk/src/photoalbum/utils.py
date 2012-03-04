@@ -6,6 +6,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from photoalbum.settings import MEDIA_ROOT
+import flickrapi
 
 
 ##
@@ -28,3 +29,27 @@ def handleUploadedPic(d, f, n):
     for chunk in f.chunks():
         fo.write(chunk)
     fo.close()
+    
+###Flickr stuff
+#def photos_search(user_id='', auth=False,  tags='', tag_mode='', text='',\
+#                  min_upload_date='', max_upload_date='',\
+#                  min_taken_date='', max_taken_date='', \
+#                  license='', per_page='', page='', sort=''):
+# 
+#
+#    method = 'flickr.photos.search'
+#
+#    data = _doget(method, auth=auth, user_id=user_id, tags=tags, text=text,\
+#                  min_upload_date=min_upload_date,\
+#                  max_upload_date=max_upload_date, \
+#                  min_taken_date=min_taken_date, \
+#                  max_taken_date=max_taken_date, \
+#                  license=license, per_page=per_page,\
+#                  page=page, sort=sort)
+#    photos = []
+#    if isinstance(data.rsp.photos.photo, list):
+#        for photo in data.rsp.photos.photo:
+#            photos.append(_parse_photo(photo))
+#    else:
+#        photos = [_parse_photo(data.rsp.photos.photo)]
+#    return photos

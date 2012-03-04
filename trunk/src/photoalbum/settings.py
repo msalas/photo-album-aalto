@@ -1,4 +1,5 @@
 # Django settings for photoalbum project.
+from os.path import abspath, dirname, basename, join
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,17 +13,17 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'C:/Users/EmB/workspace/photo-album-aalto/trunk/src/photoalbum/group013', # Or path to database file if using sqlite3.
+        'NAME': 'group013', # Or path to database file if using sqlite3.
   #      'USER': 'group013', # Not used with sqlite3.
   #      'PASSWORD': 'siOKdACn', # Not used with sqlite3.
   #      'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
   #      'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
-AUTHENTICATION_BACKENDS = (
+#AUTHENTICATION_BACKENDS = (
 #    'facebookconnect.models.FacebookBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
+#    'django.contrib.auth.backends.ModelBackend',
+#)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -49,7 +50,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = "C:/Users/EmB/workspace/photo-album-aalto/trunk/src/photoalbum/static/uploads"
+MEDIA_ROOT = "/Users/Evuski/Programming/workspace/photoalbum/src/photoalbum/static"
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
@@ -96,12 +97,10 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-#    'facebook.djangofb.FacebookMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#    'facebookconnect.middleware.FacebookConnectMiddleware'
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -122,12 +121,27 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photoalbum',
-#    'photoalbum.facebookconnect',
+    'facebook',
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
      'django.contrib.admindocs',
 )
+#
+
+AUTHENTICATION_BACKENDS = (
+    'facebook.backend.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+)
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -152,8 +166,20 @@ LOGGING = {
     }
 }
 
-#Facebook stuff
-FACEBOOK_CACHE_TIMEOUT = 1800
-FACEBOOK_API_KEY = '383521418343817'
-FACEBOOK_SECRET_KEY = '4163aa0182ffffd56115783773c055b3'
-FACEBOOK_INTERNAL = True
+##Facebook stuff
+AUTH_PROFILE_MODULE = 'facebook.FacebookProfile'
+FACEBOOK_APP_ID = '383521418343817'
+FACEBOOK_APP_SECRET = '4163aa0182ffffd56115783773c055b3'
+FACEBOOK_SCOPE = 'email,publish_stream'
+#INSTALLED_APPS = ['facebook']
+#FACEBOOK_CACHE_TIMEOUT = 1800
+#FACEBOOK_API_ID = '383521418343817'
+#FACEBOOK_API_SECRET = '4163aa0182ffffd56115783773c055b3'
+##FACEBOOK_INTERNAL = True
+#LOGIN_URL          = '/login-form/'
+#LOGIN_REDIRECT_URL = '/logged-in/'
+#LOGIN_ERROR_URL    = '/login-error/'
+
+##Flickr stuff
+#FLICKR_API_KEY = 'bbec8f4c30c3f90bc8c595d401345e36'
+#FLICKR_API_SECRET = '7a7185ab46a631d0'

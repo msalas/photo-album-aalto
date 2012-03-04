@@ -5,11 +5,13 @@
 
 ### necessary libraries ###
 from django.db import models
+import json, urllib
 #from django.utils.datetime_safe import datetime
 #from django.template.defaultfilters import default
 from django.contrib.admin.models import User
+from django.contrib.auth.models import User
 #from django.db.models.signals import post_save
-#import math, md5
+import math, md5
 
 
 
@@ -114,3 +116,13 @@ class Sentence(models.Model):
         
     def __unicode__(self):
         return self.name
+
+##Facebook stuff
+#class FacebookProfile(models.Model):
+#    user = models.OneToOneField(User)
+#    facebook_id = models.BigIntegerField()
+#    access_token = models.CharField(max_length=150)
+#
+#    def get_facebook_profile(self):
+#        fb_profile = urllib.urlopen('https://graph.facebook.com/me?access_token=%s' % self.access_token)
+#        return json.load(fb_profile)

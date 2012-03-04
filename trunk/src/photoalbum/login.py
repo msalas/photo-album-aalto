@@ -156,10 +156,10 @@ def signin(request):
 
 ##
 # Close the session for an user and go to the front page.
-#def signout(request):
-#    if is_auth(request):
-#        logout(request)
-#        return HttpResponseRedirect('/')  
+def signout(request):
+    if is_auth(request):
+        logout(request)
+        return HttpResponseRedirect('/')  
 
 
 ##

@@ -2,27 +2,35 @@ from django.template.loader import get_template
 from django.template import Context
 from django.template import RequestContext, loader
 from django.core.context_processors import csrf
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from photoalbum.models import *
+from settings import *
 from django import forms
 from photoalbum.forms import *
 from photoalbum.login import *
 from photoalbum.utils import *
+import flickrapi
+#from django.contrib.auth import logout as auth_logout
+#from django.contrib.auth.decorators import login_required
+#from django.contrib.messages.api import get_messages
+from facebook import *
 
 # Render the home page.
-def main(request, **kwargs):
+def main(request):
     t = loader.get_template('main.html')
+#    facebook_profile = request.user.get_profile().get_facebook_profile()
 
     context = RequestContext(request, {
     'user'  : request.user,
+#    'facebook_profile': facebook_profile,
     }) 
     # if the user is authenticated
     if request.user.is_authenticated():
         user = request.user
-        template = loader.get_template('profile.html')
+        template = loader.get_template('createAlbum.html')
         albums = Album.objects.filter(owner__id__exact=user.id)
         public_albums = Album.objects.filter(visible=True).filter(owner__id__exact=user.id)
         if len(albums) == 0:           
@@ -39,9 +47,6 @@ def main(request, **kwargs):
     context.update(csrf(request))
     return HttpResponse(t.render(context))
 
-#Facebook stuff
-def xd_receiver(request):
-    return render_to_response('xd_receiver.html')
 
 def createAlbum(request, **kwargs):
     t = loader.get_template('createAlbum.html')
