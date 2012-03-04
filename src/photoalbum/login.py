@@ -10,11 +10,12 @@ from django.template import Context, RequestContext, loader
 from django.core.context_processors import csrf
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from myadmin import *
+#from myadmin import *
 import os.path
-from models import *
+from photoalbum.models import *
 from forms import *
 import datetime, hashlib, os
+from photoalbum.forms import *
 
 #Defines is_auth
 def is_auth(request):
@@ -26,7 +27,7 @@ def is_auth(request):
 # Render a simple registration form (sign up)
 def signup(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST, request.FILES)
+        form = RegistrationForm(request.POST, request.FILES)  
         
         errors = False
         name_error = ""
@@ -36,7 +37,7 @@ def signup(request):
         
         # check if the user already exists in the database
         try:
-            check_username = User.objects.get(username=request.POST.get('user'))
+            check_username = User.objects.get(username=request.POST.get('username'))
             errors = True
             name_error = "This username is already registered"
             print "name error"
@@ -63,7 +64,7 @@ def signup(request):
                 'firstname'      : request.POST.get('firstname'),
                 'surname'        : request.POST.get('surname'),
                 'email'          : request.POST.get('email'),
-                'passwd'         : request.POST.get('password'),
+                'password'       : request.POST.get('password'),
                 'user_exists'    : True,
                 'form'           : form,
                 'login_form'     : login_form,
@@ -76,23 +77,27 @@ def signup(request):
             return HttpResponse(t.render(context))
             
         else:
-
             # save all the data from the POST into the database
             u  = User.objects.create_user(
                 request.POST.get('username'),
                 request.POST.get('email'),
                 request.POST.get('password')
             )
+                        
             up = UserProfile.objects.create(user_id=u.id)
             u.first_name = request.POST.get('firstname')
             u.last_name  = request.POST.get('surname')
             u.save()
-            up.save()
+            up.save()   
             
-            # redirect the user to the login page with a welcome
+               
+            t = loader.get_template('signin.html')
+            login_form = LoginForm()
+              
+            # redirect the user to the login page with a welcome message
             context = RequestContext(request, {
                 'username'      : request.POST.get('username'),
-#                'album'         : albums,
+#             'album'         : albums,
                 'login_form'    : login_form,
                 'registered'    : True,
             })
@@ -127,6 +132,7 @@ def signin(request):
             password = form.cleaned_data['password']
 
             # try to validate the user against the DB
+            print'print this'
             user = authenticate(username=username, password=password)
             if user is not None:
                 # login the user and redirect to the front page
@@ -151,10 +157,10 @@ def signin(request):
 
 ##
 # Close the session for an user and go to the front page.
-def signout(request):
-    if is_auth(request):
-        logout(request)
-        return HttpResponseRedirect('/')  
+#def signout(request):
+#    if is_auth(request):
+#        logout(request)
+#        return HttpResponseRedirect('/')  
 
 
 ##
@@ -173,40 +179,40 @@ def editProfile(request):
             'firstname'        : u.first_name,
             'surname'          : u.last_name,
             'email'            : u.email,
-#           'album'            : albums,
-            'form'             : form,
-        })
+#            'album'            : albums,
+#            'form'             : form,
+       })
         context.update(csrf(request))
         return HttpResponse(t.render(context))
 
 
 ##
 # Save the user's profile.
-def saveProfile(request):
-    if is_auth(request) and request.method == 'POST':
-        t = loader.get_template('profile.html')
+#def saveProfile(request):
+#    if is_auth(request) and request.method == 'POST':
+#        t = loader.get_template('profile.html')
 
         # save all the data from the POST into the database
-        up = UserProfile.objects.get(user=request.user.id)
-        u = User.objects.get(id=request.user.id)
-        u.first_name = request.POST.get('firstname')
-        u.last_name  = request.POST.get('surname')
+#        up = UserProfile.objects.get(user=request.user.id)
+#        u = User.objects.get(id=request.user.id)
+#        u.first_name = request.POST.get('firstname')
+#        u.last_name  = request.POST.get('surname')
 
         # commit to the database
-        u.save()
-        up.save()
+#        u.save()
+#        up.save()
 
         # display profile again
-        form = ProfileForm(request.POST, request.FILES)
-        context = RequestContext(request, {
-            'username'       : u.username,
-            'firstname'      : u.first_name,
-            'surname'        : u.last_name,
-            'email'          : u.email,
-            'form'           : form,
-            'saved'          : True,
-        })
+#        form = ProfileForm(request.POST, request.FILES)
+#        context = RequestContext(request, {
+#            'username'       : u.username,
+#            'firstname'      : u.first_name,
+#            'surname'        : u.last_name,
+#            'email'          : u.email,
+#            'form'           : form,
+#            'saved'          : True,
+#        })
 
         # redirect the user to the home page (already logged-in)
-        context.update(csrf(request))
-        return HttpResponse(t.render(context))
+#        context.update(csrf(request))
+#        return HttpResponse(t.render(context))

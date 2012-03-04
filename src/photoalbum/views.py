@@ -2,20 +2,22 @@ from django.template.loader import get_template
 from django.template import Context
 from django.template import RequestContext, loader
 from django.core.context_processors import csrf
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from photoalbum.models import *
-#from django import forms
+from django import forms
 from photoalbum.forms import *
+from photoalbum.login import *
 
 class LoginForm(forms.Form):
     username = forms.CharField( max_length=16 )
     password = forms.CharField( max_length=16, widget=forms.PasswordInput )
 	
 ##
-# Render the home page. 
-def main(request):
+# Render the home page.
+def main(request, **kwargs):
     t = loader.get_template('main.html')
 
     context = RequestContext(request, {
@@ -40,3 +42,7 @@ def main(request):
     # render the home page
     context.update(csrf(request))
     return HttpResponse(t.render(context))
+
+#Facebook stuff
+def xd_receiver(request):
+    return render_to_response('xd_receiver.html')

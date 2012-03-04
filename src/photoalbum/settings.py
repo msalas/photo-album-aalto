@@ -1,4 +1,6 @@
 # Django settings for photoalbum project.
+from os.path import realpath
+DATABASE_NAME = realpath('database.db')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -19,6 +21,10 @@ DATABASES = {
   #      'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
+AUTHENTICATION_BACKENDS = (
+    'facebookconnect.models.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -93,10 +99,12 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'facebook.djangofb.FacebookMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'facebookconnect.middleware.FacebookConnectMiddleware'
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -116,6 +124,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'photoalbum',
+    'photoalbum.facebookconnect',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -144,3 +154,9 @@ LOGGING = {
         },
     }
 }
+
+#Facebook stuff
+FACEBOOK_CACHE_TIMEOUT = 1800
+FACEBOOK_API_KEY = '383521418343817'
+FACEBOOK_SECRET_KEY = '4163aa0182ffffd56115783773c055b3'
+FACEBOOK_INTERNAL = True
