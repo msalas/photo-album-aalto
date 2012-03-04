@@ -87,7 +87,7 @@ class Page(models.Model):
 class Image(models.Model):
     filename            = models.CharField(max_length=50)
     picture             = models.ImageField(upload_to='uploads')
-    album_id            = models.IntegerField()
+    album_id            = models.IntegerField(null=True)
     path                = models.FilePathField()
     
     def savePicture(self):
@@ -104,7 +104,7 @@ class Image(models.Model):
 class Sentence(models.Model):
     description     = models.CharField(max_length=100)
     font            = models.CharField(max_length=20)
-    size            = models.IntegerField()
+    size            = models.IntegerField(null = True)
     color           = models.CharField(max_length=7)
     
     

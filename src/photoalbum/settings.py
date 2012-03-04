@@ -1,6 +1,4 @@
 # Django settings for photoalbum project.
-from os.path import realpath
-DATABASE_NAME = realpath('database.db')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -14,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'group013', # Or path to database file if using sqlite3.
+        'NAME': 'C:/Users/EmB/workspace/photo-album-aalto/trunk/src/photoalbum/group013', # Or path to database file if using sqlite3.
   #      'USER': 'group013', # Not used with sqlite3.
   #      'PASSWORD': 'siOKdACn', # Not used with sqlite3.
   #      'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
@@ -22,7 +20,7 @@ DATABASES = {
     }
 }
 AUTHENTICATION_BACKENDS = (
-    'facebookconnect.models.FacebookBackend',
+#    'facebookconnect.models.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -51,8 +49,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
-
+MEDIA_ROOT = "C:/Users/EmB/workspace/photo-album-aalto/trunk/src/photoalbum/static/uploads"
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
@@ -100,11 +97,11 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'facebook.djangofb.FacebookMiddleware',
+#    'facebook.djangofb.FacebookMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'facebookconnect.middleware.FacebookConnectMiddleware'
+#    'facebookconnect.middleware.FacebookConnectMiddleware'
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -114,7 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/Users/Evuski/Programming/workspace/photoalbum/src/photoalbum/templates"
+    "os.path.join(os.path.dirname(__file__),'templates').replace('\\','/'),"
 )
 
 INSTALLED_APPS = (
@@ -125,11 +122,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photoalbum',
-    'photoalbum.facebookconnect',
+#    'photoalbum.facebookconnect',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+     'django.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging

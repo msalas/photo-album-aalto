@@ -30,3 +30,19 @@ class ProfileForm(forms.Form):
     username        = forms.CharField(max_length=16)
     password        = forms.CharField(widget=forms.PasswordInput)
     email           = forms.CharField(max_length=32)
+
+class AlbumForm(forms.Form):
+    album_name       = forms.CharField(max_length=16)
+    layout           = forms.ChoiceField(choices=[("0", "Layout 1"),
+                                         ("1", "Layout 2"),
+                                         ("2", "Layout 3"),
+                                         ("3", "Layout 4")],
+                                widget=forms.Select)
+    public           = forms.BooleanField(required=False)
+    
+class UploadImageForm(forms.Form):
+    caption            = forms.CharField(max_length=50)
+#    picture            = forms.ImageField()
+    picture            = forms.FileField()
+    album_id           = forms.IntegerField()
+#    path                = models.FilePathField()
