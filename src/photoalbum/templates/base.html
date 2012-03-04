@@ -1,17 +1,17 @@
 <!--
-   - base.html
-   -
-   - Basic template that includes the minimal skeleton for building each of the
-   - extended templates.
-   -
-   - (c) 2011 The Webshop Team
+   - base.html The Photo Album Team
 !-->
 
 
 
-<!DOCTYPE html>
-<html> 
-    <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+<!--	xmlns:fb="http://www.facebook.com/2008/fbml">
+
+
+<head>
+{% block script %}{% endblock %}
         <!-- website title (loaded dynamically) -->
         <title>{% block title %}The Photo Album 2012{% endblock %}</title>
 
@@ -30,12 +30,15 @@
 
         <!-- Javascript functionality -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-    <!--    <script src="/static/js/validate.js"></script>
-        <script src="/static/js/formvalidation.js"></script> -->
+    <script src="/static/js/validate.js"></script>
+        <script src="/static/js/formvalidation.js"></script>
         {% block extra_head %}{% endblock %}
-    </head> 
+</head> 
     
     <body>
+  
+    	
+    {% block 'content' %}
         <div id="wraper">
             <!-- top-bar navigation -->
             {% block header %}
@@ -62,23 +65,12 @@
                 
                     {% if request.user.is_authenticated %}
                     <li><a href="/editProfile">{{ request.user.username }}</a> 
-                        <ul> 
-                            <li><a href="/cart">My albums</a></li> 
-                            <li><a href="/editProfile">My profile</a></li> 
+                        <ul>
                             <li><a href="/signout">Sign out</a></li>
                         </ul> 
                     </li> 
 
-                    {% if request.user.is_staff %}
-                        <li><a href="/myadmin">Administration</a></li>
-                    {% endif %}
 
-                        {% if products_in_cart > -1 %}
-                        <li id="my-cart">
-                            <a href="/cart"><img id="cart"
-                               src="/static/images/cart-icon.png" alt="My Cart" /><span id="products-in-cart">{{ products_in_cart }}</span> items</a>
-                        </li>
-                        {% endif %}
                     {% else %}
                         <li><a href="/signup">Sign up</a></li>
                     {% endif %}
@@ -97,6 +89,6 @@
                 {% endblock %}
             </div>
         </div>
-        
+        {% endblock %}
     </body> 
 </html>

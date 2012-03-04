@@ -6,6 +6,11 @@
 -->
 {% extends "base.html" %}
 
+{% block script %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://browserid.org/include.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block title %} Welcome to Photo Album! {% endblock %}
 
 
@@ -18,12 +23,12 @@
     {% else %}
         <h2>Welcome to PhotoAlbum</h2>
 		
- <!-- 		<div class="centered">
+		<div class="centered">
 			<table>
 			{% for album in albums %}
 				<tr>
 					<td rowspan="2" class="album">
-						<a href="/album/{{ album.id }}/"> <img class="product-pic" src="/static/images/{{ album.coverid }}" ></a>
+						<a href="/album/{{ album.id }}/"> <img class="product-pic" src="/static/images/products/{{ album.coverid }}" ></a>
 					</td>
 					<td class="product">
 						<div class="title"><a href="/product/{{ album.id }}/">{{ album.name }}</a></div>
@@ -32,7 +37,7 @@
 				</tr>
 			{% endfor %}
 			</table>
-		</div> -->
+		</div>
     {% endif %}
 
     <!-- regular descriptive text of the website for everybody -->
@@ -55,5 +60,18 @@
     </p>
 	<br/>
     {% endif %}
-	
+    
+    <h1>Facebook OAUTH2 Test Project</h1>
+    {% if user.is_authenticated %}
+    <h2>You are logged in as: {{ user }}</h2>
+    <a href="/logout">Logout</a>
+    <hr />
+    <h2>User info</h2>
+    <img src="http://graph.facebook.com/{{ user.get_profile.facebook_id }}/picture" /><br />
+    <pre>{{ facebook_profile|pprint }}</pre>
+    {% else %}
+    <a href="/facebook/login">Login via Facebook</a>
+    {% endif %}
+    <hr />
+    <a href="/admin">Admin</a>
 {% endblock %}

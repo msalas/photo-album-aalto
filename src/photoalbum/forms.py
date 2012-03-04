@@ -46,3 +46,4 @@ class UploadImageForm(forms.Form):
     picture            = forms.FileField()
     album_id           = forms.IntegerField()
 #    path                = models.FilePathField()
+
