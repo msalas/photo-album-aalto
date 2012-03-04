@@ -20,8 +20,11 @@ urlpatterns = patterns('',
     (r'^signin$', 'photoalbum.views.signin'),
     (r'^signout$', 'photoalbum.views.signout'),
     (r'^editProfile$', 'photoalbum.views.editProfile'),
-    (r'^facebook/', include('facebookconnect.urls')),
-    (r'^xd_receiver\.html$', xd_receiver)
+#    (r'^facebook/', include('facebookconnect.urls')),
+#    (r'^xd_receiver\.html$', xd_receiver)
+
+    (r'^createAlbum$', 'photoalbum.views.createAlbum'),
+    (r'^addPhoto$', 'photoalbum.views.addPhoto'),
     
     (r'^myadmin$', 'photoalbum.views.myadmin'),
     

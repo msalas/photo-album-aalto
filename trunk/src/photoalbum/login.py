@@ -82,8 +82,7 @@ def signup(request):
                 request.POST.get('username'),
                 request.POST.get('email'),
                 request.POST.get('password')
-            )
-                        
+            )           
             up = UserProfile.objects.create(user_id=u.id)
             u.first_name = request.POST.get('firstname')
             u.last_name  = request.POST.get('surname')

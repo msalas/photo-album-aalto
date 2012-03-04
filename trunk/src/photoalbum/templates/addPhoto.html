@@ -1,0 +1,41 @@
+<!-- Sign in form The Photo Album Team
+!-->
+
+<!-- layout inherited from base.html -->
+{% extends "base.html" %}
+
+<!-- title and extra headers -->
+{% block title %} PhotoAlbum -- Add Photo {% endblock %}
+
+<!-- main content -->
+{% block main_content %}
+        <!-- upload image form -->
+        <form enctype="multipart/form-data" id="uploadImageForm" method="post" action="/addPhoto">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>
+	        <label for="caption">Caption:</label>
+            </td>
+            <td>
+			{{ uploadImageForm.caption }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="picture">Select photo:</label>
+            </td>
+            <td>
+			{{ uploadImageForm.picture }}
+            </td>
+        </tr>
+        album_id = {{ album_id }}
+        <input type="hidden" id="album_id" name="album_id" value="{{ album_id }}"/>
+        <tr>
+            <td colspan="2" align="right">
+                <input class="button" type="submit" id="submit" name="submit" value="Upload Photo" />
+            </td>
+        </tr>
+        </table>
+        </form>
+    {% endblock %}

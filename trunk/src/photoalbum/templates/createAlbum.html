@@ -1,0 +1,45 @@
+<!-- Sign in form The Photo Album Team
+!-->
+
+<!-- layout inherited from base.html -->
+{% extends "base.html" %}
+
+<!-- title and extra headers -->
+{% block title %} PhotoAlbum -- Create Album {% endblock %}
+{% block main_content %}
+        <!-- create album form -->
+        <form method="post" id="album_form" action="/createAlbum">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>
+	        <label for="user">Album name:</label>
+            </td>
+            <td>
+			{{ album_form.album_name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="pass">Layout:</label>
+            </td>
+            <td>
+			{{ album_form.layout }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+	        <label for="pass">I want it to be public to everybody:</label>
+            </td>
+            <td>
+			{{ album_form.public }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <input class="button" type="submit" id="submit" name="submit" value="Create" />
+            </td>
+        </tr>
+        </table>
+        </form>
+    {% endblock %}
