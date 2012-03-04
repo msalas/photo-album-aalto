@@ -5,14 +5,11 @@
 
 ### necessary libraries ###
 from django.db import models
-import json, urllib
 #from django.utils.datetime_safe import datetime
 #from django.template.defaultfilters import default
 from django.contrib.admin.models import User
-from django.contrib.auth.models import User
 #from django.db.models.signals import post_save
-import math, md5
-
+#import math, md5
 
 
 ##
@@ -48,49 +45,36 @@ User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 # id          implicit ID field (automatically generated)
 # name        name of the category
 # visible    
-
 class Album(models.Model):
-    name        = models.CharField(max_length=32, blank = False)
-    cover_id    = models.CharField(max_length=10)
+    title       = models.CharField(max_length=32, blank = False)
+    cover_id    = models.CharField(max_length=10) # This is supposed to be the cover picture of the album
     visible     = models.BooleanField(default=True)
-    owner       = models.ForeignKey('UserProfile')
-    front_page  = models.FilePathField()
+    owner       = models.ForeignKey(UserProfile)
+    #front_page  = models.FilePathField() # whats this?
     
     def __unicode__(self):
-        return self.name
+        return self.title
 
-##
-# Model: Page
-#
-#
-# id          implicit ID field (automatically generated)
-# name        name of the tag
 class Page(models.Model):
-    layout_id = models.IntegerField()
-    album_id  = models.IntegerField()
-    image1 = models.CharField(max_length=256) #null? TODO
-    image2 = models.CharField(max_length=256) #null? TODO
-    image3 = models.CharField(max_length=256) #null? TODO
-    image4 = models.CharField(max_length=256) #null? TODO
-    sentence1 = models.CharField(max_length=256) #null? TODO
-    sentence2 = models.CharField(max_length=256) #null? TODO
-    sentence3 = models.CharField(max_length=256) #null? TODO
-    sentence4 = models.CharField(max_length=256) #null? TODO
-
-    def __unicode__(self):
-        return self.name
+#    title = models.CharField(max_length=75)
+    layout      = models.IntegerField(null=True) 
+    album_id       = models.IntegerField(null=True)
     
- 
- 
+    def __unicode__(self):
+        return self.title
+    
+     
 ##
 # Model: Image
 #
 #
 class Image(models.Model):
-    filename            = models.CharField(max_length=50)
-    picture             = models.ImageField(upload_to='uploads')
+#    filename            = models.CharField(max_length=50)
+#    picture             = models.ImageField(upload_to='uploads')
+    picture             = models.CharField(max_length=100)
     album_id            = models.IntegerField(null=True)
-    path                = models.FilePathField()
+    page_id             = models.IntegerField(null=True)
+#    path                = models.FilePathField()
     
     def savePicture(self):
         self.save()
@@ -105,6 +89,7 @@ class Image(models.Model):
 # 
 class Sentence(models.Model):
     description     = models.CharField(max_length=100)
+    image_id        = models.IntegerField(null=True)
     font            = models.CharField(max_length=20)
     size            = models.IntegerField(null = True)
     color           = models.CharField(max_length=7)
@@ -112,17 +97,9 @@ class Sentence(models.Model):
     
     def saveSentence(self):
     #todo
-        return self
+        self.save()
         
     def __unicode__(self):
         return self.name
 
-##Facebook stuff
-#class FacebookProfile(models.Model):
-#    user = models.OneToOneField(User)
-#    facebook_id = models.BigIntegerField()
-#    access_token = models.CharField(max_length=150)
-#
-#    def get_facebook_profile(self):
-#        fb_profile = urllib.urlopen('https://graph.facebook.com/me?access_token=%s' % self.access_token)
-#        return json.load(fb_profile)
+

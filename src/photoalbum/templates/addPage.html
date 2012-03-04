@@ -1,0 +1,68 @@
+<!-- Sign in form The Photo Album Team
+!-->
+
+<!-- layout inherited from base.html -->
+{% extends "base.html" %}
+
+<!-- title and extra headers -->
+{% block title %} PhotoAlbum -- Add Page {% endblock %}
+{% block main_content %}
+        <!-- create album form -->
+        <form method="post" id="page_form" action="/addPage">
+        {% csrf_token %}
+	        <table>
+		        <tr>
+			        <td rowspan="2">
+			        	<tr>
+				            <td>
+					        <label for="pass">Layout:</label>
+				            </td>
+				            <td>
+							{{ page_form.layout }}
+				            </td>
+				        </tr>
+				        <input type="hidden" id="album_id" name="album_id" value="{{ album_id }}"/>
+				        <tr>
+				            <td colspan="2" align="right">
+				                <input class="button" type="submit" id="submit" name="submit" value="Add Page" />
+				            </td>
+				        </tr>
+			        </td>
+			        <td>
+				        <tr>
+				            <td>
+					        	<tr>
+						            <td>
+							        	<label for="pass">Layout 1</label>
+						            </td>
+						            <td>
+							        	<img src="/static/images/layout1.png" width="200" height="200"/>
+						            </td>
+						        </tr>
+				            </td>
+				            <td>
+					        	<tr>
+						            <td>
+							        	<label for="pass">Layout 2</label>
+						            </td>
+						            <td>
+							        	<img src="/static/images/layout2.png" width="200" height="200"/>
+						            </td>
+						        </tr>
+				            </td>
+				            <td>
+					        	<tr>
+						            <td>
+							        	<label for="pass">Layout 3</label>
+						            </td>
+						            <td>
+							        	<img src="/static/images/layout3.png" width="200" height="200"/>
+						            </td>
+						        </tr>
+				            </td>
+				        </tr>
+			        </td>
+			    </tr>
+	        </table>
+        </form>
+    {% endblock %}

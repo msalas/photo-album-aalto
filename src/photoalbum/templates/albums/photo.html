@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %} {{ sentence.description }} {% endblock %}
+
+{% block main_content %}
+
+	<img src="/static/uploads/{{image.picture}}"/>
+	<div id="caption">{{sentence.description}}</div>
+
+{% endblock %}

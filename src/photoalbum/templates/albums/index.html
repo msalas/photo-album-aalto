@@ -1,9 +1,17 @@
-{% if album_list %}
-    <ul>
-    {% for album in album_list %}
-        <li><a href="/albums/{{ album.id }}/">{{ album.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No albums are available.</p>
-{% endif %}
+{% extends "base.html" %}
+
+{% block title %} Welcome to Photo Album! {% endblock %}
+
+{% block main_content %}
+
+	{% if album_list %}
+	    <ul>
+	    {% for album in album_list %}
+	        <li><a href="/albums/{{ album.id }}/">{{ album.title }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No albums are available.</p>
+	{% endif %}
+
+{% endblock %}

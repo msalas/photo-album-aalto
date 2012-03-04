@@ -1,0 +1,40 @@
+<!--
+   - main.html
+   -
+   - Main menu of the application. Displayed after logging in.
+   -
+-->
+{% extends "base.html" %}
+
+{% block title %} Welcome to Photo Album! {% endblock %}
+
+
+
+<!-- main content -->
+{% block main_content %}
+    <!-- welcome the user, if authenticated -->
+    {% if request.user.is_authenticated %}
+        <h2>Welcome {{ request.user.username }}!</h2>
+    {% else %}
+        <h2>Welcome to PhotoAlbum</h2>
+    {% endif %}
+
+    <!-- regular descriptive text of the website for everybody -->
+    <p>
+        Be the first one to comment and rate on the
+        coolest photos.
+    </p>
+    <p><br /></p>
+
+    <!-- let new users to easily join our network -->
+    {% if not request.user.is_authenticated %}
+    
+    <p>
+        <a href="/createAlbum">Create an album</a> right now!
+        <br>
+        <a href="/albums">View your albums</a>!
+    </p>
+	<br/>
+    {% endif %}
+	
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} {{ album.title }} {% endblock %}
+
+{% block main_content %}
+
+	Your pages
+
+	{% if page_list %}
+	    {% for image in image_list %}
+		    <ul>
+		        <a href="/albums/{{image.id}}"><img src="/static/uploads/{{image.picture}}"/></a>
+		    </ul>
+		{% endfor %}
+	{% else %}
+	    <p>No pages are available.</p>
+	{% endif %}
+
+{% endblock %}

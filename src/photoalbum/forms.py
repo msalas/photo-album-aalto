@@ -33,16 +33,18 @@ class ProfileForm(forms.Form):
 
 class AlbumForm(forms.Form):
     album_name       = forms.CharField(max_length=16)
+    public           = forms.BooleanField(required=False)
+    
+class PageForm(forms.Form):
+    album_id           = forms.IntegerField()
     layout           = forms.ChoiceField(choices=[("0", "Layout 1"),
                                          ("1", "Layout 2"),
-                                         ("2", "Layout 3"),
-                                         ("3", "Layout 4")],
+                                         ("2", "Layout 3")],
                                 widget=forms.Select)
-    public           = forms.BooleanField(required=False)
     
 class UploadImageForm(forms.Form):
     caption            = forms.CharField(max_length=50)
-#    picture            = forms.ImageField()
+    page_id            = forms.IntegerField()
     picture            = forms.FileField()
     album_id           = forms.IntegerField()
 #    path                = models.FilePathField()

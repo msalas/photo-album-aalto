@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from photoalbum.settings import MEDIA_ROOT
 import flickrapi
 
-
 ##
 # Handle an uploaded file.
 #
@@ -22,14 +21,17 @@ def handleUploadedPic(d, f, n):
     # if no file uploaded, don't change the picture
     if f is None:
         return
-
+    
+    filename =  d + "." + str(n) + '.png'
     # if a file is provided, then save it where it belongs
-    fo = open('%s/%s' % (MEDIA_ROOT, d + "." + str(n)), 'wb')
+    fo = open('%s/%s' % (MEDIA_ROOT, filename), 'wb')
 #    fo = open('static/uploads/' + d + '/' + str(n), 'wb+')
     for chunk in f.chunks():
         fo.write(chunk)
     fo.close()
-    
+    return filename
+
+  
 ###Flickr stuff
 #def photos_search(user_id='', auth=False,  tags='', tag_mode='', text='',\
 #                  min_upload_date='', max_upload_date='',\
@@ -48,8 +50,4 @@ def handleUploadedPic(d, f, n):
 #                  page=page, sort=sort)
 #    photos = []
 #    if isinstance(data.rsp.photos.photo, list):
-#        for photo in data.rsp.photos.photo:
-#            photos.append(_parse_photo(photo))
-#    else:
-#        photos = [_parse_photo(data.rsp.photos.photo)]
-#    return photos
+#        for photo in data.rsp.photos.ph
