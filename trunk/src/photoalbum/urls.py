@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 from photoalbum.views import xd_receiver
 
 urlpatterns = patterns('',
@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
     
     (r'^signup$', 'photoalbum.views.signup'),
     (r'^signin$', 'photoalbum.views.signin'),
@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     
     (r'^myadmin$', 'photoalbum.views.myadmin'),
     
-    (r'^$', 'photoalbum.views.main'),
+   (r'^$', 'photoalbum.views.main'),
+   (r'^albums$','albums.views.index')
     
 )
