@@ -1,8 +1,3 @@
-### forms.py
-### This module contains all the form definitions for Webshop.
-### (c) 2011 The Webshop Team.
-
-### necessary Django modules ###
 from django import forms
 from django.forms import widgets
 from models import *

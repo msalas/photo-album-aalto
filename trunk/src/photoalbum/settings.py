@@ -13,17 +13,13 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'group013', # Or path to database file if using sqlite3.
+        'NAME': 'C:/Users/EmB/workspace/photo-album-aalto/trunk/src/photoalbum/group013', # Or path to database file if using sqlite3.
   #      'USER': 'group013', # Not used with sqlite3.
   #      'PASSWORD': 'siOKdACn', # Not used with sqlite3.
   #      'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
   #      'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
-#AUTHENTICATION_BACKENDS = (
-#    'facebookconnect.models.FacebookBackend',
-#    'django.contrib.auth.backends.ModelBackend',
-#)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -50,7 +46,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = "/Users/Evuski/Programming/workspace/photoalbum/src/photoalbum/static"
+MEDIA_ROOT = "C:/Users/EmB/workspace/photo-album-aalto/trunk/src/photoalbum/static/uploads"
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"

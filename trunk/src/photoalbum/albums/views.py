@@ -15,9 +15,12 @@ def index(request):
 def viewAlbum(request, album_id):
     album = get_object_or_404(Album, id=album_id)
     page_list = Page.objects.filter(album_id=album_id)
-    image_list = Image.objects.filter(album_id=album_id).filter(page_id=page_list[0].id)
+    if len(page_list) == 0:
+        return render_to_response('albums/page.html', {'user'  : request.user, 'page_list': page_list, 'album': album}, context_instance=RequestContext(request))
+    else:
+        image_list = Image.objects.filter(album_id=album_id).filter(page_id=page_list[0].id)
 #    sentence_list = Sentence.objects.filter(image_id=album_id)
-    return render_to_response('albums/page.html', {'user'  : request.user, 'page_list': page_list, 'album': album, 'image_list': image_list}, context_instance=RequestContext(request))
+        return render_to_response('albums/page.html', {'user'  : request.user, 'page_list': page_list, 'album': album, 'image_list': image_list}, context_instance=RequestContext(request))
 
 def viewImage(request, image_id):
     image = Image.objects.get(id=image_id)
