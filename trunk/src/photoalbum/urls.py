@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     
     (r'^signup$', 'photoalbum.views.signup'),
     (r'^signin$', 'photoalbum.views.signin'),
-#    (r'^signout$', 'photoalbum.views.signout'),
+    (r'^signout$', 'photoalbum.views.signout'),
 #    (r'^editProfile$', 'photoalbum.views.editProfile'),
 
     (r'^facebook/login$', 'facebook.views.login'),
