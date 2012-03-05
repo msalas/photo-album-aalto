@@ -69,12 +69,9 @@ class Page(models.Model):
 #
 #
 class Image(models.Model):
-#    filename            = models.CharField(max_length=50)
-#    picture             = models.ImageField(upload_to='uploads')
     picture             = models.CharField(max_length=100)
     album_id            = models.IntegerField(null=True)
     page_id             = models.IntegerField(null=True)
-#    path                = models.FilePathField()
     
     def savePicture(self):
         self.save()

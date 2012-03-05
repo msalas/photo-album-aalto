@@ -13,55 +13,45 @@
 	        <table>
 		        <tr>
 			        <td rowspan="2">
-			        	<tr>
+			        	<tr columnspan="1">
 				            <td>
-					        <label for="pass">Layout:</label>
+					        <label for="pass">Choose layout:</label>
 				            </td>
 				            <td>
 							{{ page_form.layout }}
 				            </td>
 				        </tr>
 				        <input type="hidden" id="album_id" name="album_id" value="{{ album_id }}"/>
-				        <tr>
+				        <tr columnspan="1">
 				            <td colspan="2" align="right">
 				                <input class="button" type="submit" id="submit" name="submit" value="Add Page" />
 				            </td>
 				        </tr>
 			        </td>
-			        <td>
-				        <tr>
-				            <td>
+			        <td rowspan="2">
 					        	<tr>
-						            <td>
 							        	<label for="pass">Layout 1</label>
-						            </td>
-						            <td>
-							        	<img src="/static/images/layout1.png" width="200" height="200"/>
-						            </td>
+							    </tr>
+							    <tr>
+							        	<img src="/static/images/layout1.png" width="150" height="150"/>
 						        </tr>
-				            </td>
-				            <td>
-					        	<tr>
-						            <td>
-							        	<label for="pass">Layout 2</label>
-						            </td>
-						            <td>
-							        	<img src="/static/images/layout2.png" width="200" height="200"/>
-						            </td>
-						        </tr>
-				            </td>
-				            <td>
-					        	<tr>
-						            <td>
-							        	<label for="pass">Layout 3</label>
-						            </td>
-						            <td>
-							        	<img src="/static/images/layout3.png" width="200" height="200"/>
-						            </td>
-						        </tr>
-				            </td>
-				        </tr>
 			        </td>
+			        <td>
+					        	<tr>
+							        	<label for="pass">Layout 2</label>
+						        </tr>
+							    <tr>
+							        	<img src="/static/images/layout2.png" width="150" height="150"/>
+						        </tr>
+		            </td>
+		            <td>
+					        	<tr>
+							        	<label for="pass">Layout 3</label>
+						        </tr>
+							    <tr>
+							        	<img src="/static/images/layout3.png" width="150" height="150"/>
+						        </tr>
+		            </td>
 			    </tr>
 	        </table>
         </form>

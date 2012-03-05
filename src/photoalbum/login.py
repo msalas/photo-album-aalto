@@ -183,35 +183,3 @@ def editProfile(request):
        })
         context.update(csrf(request))
         return HttpResponse(t.render(context))
-
-
-##
-# Save the user's profile.
-#def saveProfile(request):
-#    if is_auth(request) and request.method == 'POST':
-#        t = loader.get_template('profile.html')
-
-        # save all the data from the POST into the database
-#        up = UserProfile.objects.get(user=request.user.id)
-#        u = User.objects.get(id=request.user.id)
-#        u.first_name = request.POST.get('firstname')
-#        u.last_name  = request.POST.get('surname')
-
-        # commit to the database
-#        u.save()
-#        up.save()
-
-        # display profile again
-#        form = ProfileForm(request.POST, request.FILES)
-#        context = RequestContext(request, {
-#            'username'       : u.username,
-#            'firstname'      : u.first_name,
-#            'surname'        : u.last_name,
-#            'email'          : u.email,
-#            'form'           : form,
-#            'saved'          : True,
-#        })
-
-        # redirect the user to the home page (already logged-in)
-#        context.update(csrf(request))
-#        return HttpResponse(t.render(context))
