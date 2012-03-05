@@ -33,6 +33,12 @@
         <a href="/createAlbum">Create an album</a> right now!
         <br>
         <a href="/albums">View your albums</a>!
+        <br><br>
+        or search on <img src="/static/images/flickr.png"/>
+        <form method="get" action="http://www.flickr.com/search">
+			<input type="text" name="q" size="31" maxlength="255" value="" />
+			<input type="submit" value="Flickr search" /> 
+		</form>
     </p>
 	<br/>
     {% endif %}
